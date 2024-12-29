@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image for Prediction</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if image_url %}
+            <img src="{{ image_url }}" alt="Uploaded Image">
+            <h2>Predictions:</h2>
+            <ul>
+                {% for key, value in predictions.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
